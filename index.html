@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan buat kamu</title>
+
+<style>
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f9173122;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: auto;
+  
+
+  }
+  .container {
+    text-align: center;
+    justify-content: center;
+    display: block;
+    background: #f2683222;
+    width: calc(100% - 80px);
+    padding: 40px;
+    border: solid 1.5px #fa9282;
+    border-radius: 70px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+
+    
+  }
+  h1 {
+      font-size: clamp(1.8rem, 4vw, 3em);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: auto;
+      display: inline-block;
+      background: linear-gradient(45deg, #ff5e9c, #ff5e9c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 40px;
+      border: solid 2px #ff9bbf;
+      padding: 20px 40px;
+      border-radius: 25px;
+      box-shadow: 0 0 15px #ff9bbf55;
+      animation: glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+  from{
+    box-shadow:0 0 10px #ff9bbf55;
+    transform:scale(1);
+  }
+  to{
+    box-shadow:0 0 25px #ff5e9c99;
+    transform:scale(1.03);
+  }
+ 
+  }
+  #lol {
+  overflow: hidden;
+  border: 2px solid #ff9bbf;
+  border-radius: 15px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg,#ffeef7,#ffd6e7);
+  box-shadow: 0 0 15px #ff9bbf44;
+}
+#lol span {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 1.2em;
+  color: #d63384;
+  animation: jalan 8s linear infinite;
+
+  
+}
+  @keyframes jalan {
+  from{
+    transform:translateX(100%);
+  }
+  to{
+    transform:translateX(-100%);
+  }
+
+
+  }
+  .button {
+        justify-content: center;
+        align-items: center;
+        margin: 70px 70px 70px 70px;
+   }
+   button:hover {
+        transform: scale(1.2);
+    
+  }
+  button {
+            display: inline-block;
+            width: auto;
+            padding: 15px 35px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-left: 4px;
+            transition: all 0.3s ease;
+  }
+  #message {
+          display: none;
+          font-size: 2em;
+          color: maroon;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          opacity: 0;
+          transition: opacity 1s ease;
+          animation: fadeInUp 1s infinite;
+  }      
+  @keyframes fadeInUp {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+  
+  }
+  #pencet {
+    border-radius: 50px;
+    background: linear-gradient(180deg, #F827, #F528);
+    transition: 1s;
+
+  
+  }
+  #gambar {
+    display: none;
+    opacity:0;
+    transition:1s;
+    margin: 20px auto;
+  }
+ 
+  }
+ .sparkles{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.sparkles span{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:white;
+  border-radius:50%;
+  animation:sparkle 1s linear infinite;
+}
+@keyframes sparkle{
+  0%{
+    transform:scale(0);
+    opacity:1;
+  }
+  100%{
+    transform:scale(2);
+    opacity:0;
+  }
+}
+  .glitter{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.glitter span {
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  animation:explode 700ms ease forwards;
+
+  
+}
+@keyframes explode{
+  from{
+    transform:translate(0,0) scale(1);
+    opacity:1;
+  }
+  to{
+    transform:translate(var(--x), var(--y)) scale(0);
+    opacity:0;
+  }
+}
+
+
+}
+  
+</style>
+</head>
+
+<body>
+<div class = "container">
+<h1 id ="judul">liat ke running text</h1>
+  <div id="lol">    
+  <span>naahhh sekarang pencet tombol yang ada di bawah ini</span>
+  </div>
+  <button id="pencet">pencet</button>
+  <img id="gambar" src="gambar.jpg" alt="gambar" style="display:none; width: 200px;">
+  <div class="sparkles"></div>
+  <message id="message">makaasiii banyaakkk yaa sayaangg udaa jadii pasangann ak di hiduupp yang hanyaa sekalii inii. akuuu akann teruss di sini nemeninn kamuu kooo mwwaaaahhh. maaf ataass segalaa kekurangankuu, ak akann menjadii lebih baikk buatt kamuuu.
+    i loveeeee uuuu soo muucchh</message>
+  <div class="glitter"></div>
+
+<script>
+  const pencetBtn = document.getElementById('pencet');
+  const message = document.getElementById('message');
+  const gambar = document.getElementById('gambar');
+  const sparkles = document.querySelector('.sparkles');
+
+  function createSparkle(){
+  const s = document.createElement("span");
+
+  s.style.top = Math.random()*100+"%";
+  s.style.left = Math.random()*100+"%";
+  s.style.animationDuration = (Math.random()+0.5)+"s";
+
+  sparkles.appendChild(s);
+
+  setTimeout(()=>s.remove(),1000);
+}
+
+const glitter = document.querySelector('.glitter');
+
+function explode(x,y){
+  for(let i=0;i<30;i++){
+    const s=document.createElement("span");
+
+    const angle=Math.random()*360;
+    const distance=80+Math.random()*60;
+
+    const dx=Math.cos(angle*Math.PI/180)*distance+"px";
+    const dy=Math.sin(angle*Math.PI/180)*distance+"px";
+
+    s.style.left=x+"px";
+    s.style.top=y+"px";
+    s.style.setProperty("--x",dx);
+    s.style.setProperty("--y",dy);
+
+    glitter.appendChild(s);
+    setTimeout(()=>s.remove(),700);
+  }
+}
+
+
+  // tombol pencet
+  pencetBtn.addEventListener("click", () => {
+    message.style.display = "block";
+    setTimeout(() => {message.style.opacity="1";}, 100);
+    const rect=pencetBtn.getBoundingClientRect();
+    explode(rect.left+rect.width/2,rect.top+rect.height/2);
+    pencetBtn.style.display = "none";
+    judul.style.display = "none";
+    lol.style.display = "none";
+    gambar.style.display = "block";
+    setInterval(createSparkle,150);
+    setTimeout(() => {gambar.style.opacity="1";}, 100);
+  });
+  
+</script>
+</div>
+</body>
